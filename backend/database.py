@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, String, Float, Date
 
-SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://icarouscja:tokyo3@db:3306/hospedaje_db"
+SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:tokyo3@db:3306/hospedaje_db"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
