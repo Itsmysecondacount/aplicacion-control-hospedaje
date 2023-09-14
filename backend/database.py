@@ -13,8 +13,8 @@ Base = declarative_base()
 class Cliente(Base):
     __tablename__ = 'Clientes'
 
-    Cliente_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    Dni = Column(String(20), unique=True, index=True)
+    ClienteID = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    DNI = Column(String(20), unique=True, index=True)
     Nombre = Column(String(50))
     Apellido = Column(String(50))
     Email = Column(String(50))
