@@ -51,3 +51,17 @@ def create_tarea(tarea: models.TareasModel, db: Session = Depends(get_db)):
 @app.post("/reportes/")
 def create_reporte(reporte: models.ReportesModel, db: Session = Depends(get_db)):
     return crud.create_reporte(db, reporte)
+
+#Endpoints para recuperar datos
+
+@app.get("/clientes/{cliente_id}")
+def read_cliente(cliente_id: int, db: Session = Depends(get_db)):
+    db_cliente = crud.get_cliente(db, cliente_id=cliente_id)
+    if db_cliente is None:
+        raise HTTPException(status_code=404, detail="Cliente no encontrado")
+    return db_cliente
+
+@app.get("/clientes/")
+def read_clientes(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    clientes = crud.get_clientes(db, skip=skip, limit=limit)
+    return clientes

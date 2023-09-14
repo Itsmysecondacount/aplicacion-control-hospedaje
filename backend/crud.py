@@ -2,6 +2,8 @@ from sqlalchemy.orm import Session
 import models
 import database
 
+#Todos los métodos para crear
+
 def create_cliente(db: Session, cliente: models.ClienteModel):
     db_cliente = database.Cliente(**cliente.dict())
     db.add(db_cliente)
@@ -64,3 +66,12 @@ def create_reporte(db: Session, reporte: models.ReportesModel):
     db.commit()
     db.refresh(db_reporte)
     return models.ReportesModel(**db_reporte.__dict__)
+
+#Todos los métodos para recuperar datos
+
+def get_cliente(db: Session, cliente_id: int):
+    return models.ClienteModel(db.query(database.Cliente).filter(database.Cliente.ClienteID == cliente_id).first().__dict__)
+
+def get_clientes(db: Session, skip: int = 0, limit: int = 10):
+    return models.ClienteModel(db.query(database.Cliente).offset(skip).limit(limit).all().__dict__)
+
