@@ -4,11 +4,13 @@ services:
   backend:
     build: ./backend  # Path to the folder containing the Dockerfile
     container_name: my_backend_container
+    volumes:
+      - ./backend:/app
     ports:
       - "8000:8000"  # Map port 8000 in the container to port 8000 on the host
     depends_on:
       - db  # This ensures the db service is started before the backend service
-      
+
   db:
     image: mysql:8.0
     container_name: my_mysql_container
