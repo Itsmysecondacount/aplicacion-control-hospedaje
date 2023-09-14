@@ -1,8 +1,10 @@
 from sqlalchemy.orm import Session
+import models
 import database
 
-def create_cliente(db: Session, cliente: database.Cliente):
-    db.add(cliente)
+def create_cliente(db: Session, cliente: models.Cliente):
+    db_cliente = database.Cliente(**cliente.dict())
+    db.add(db_cliente)
     db.commit()
     db.refresh(cliente)
     return cliente
