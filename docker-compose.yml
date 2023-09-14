@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: my_mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: tokyo3
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: icarouscja
+      MYSQL_PASSWORD: tokyo3
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
