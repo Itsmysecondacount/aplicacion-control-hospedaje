@@ -73,5 +73,7 @@ def get_cliente(db: Session, cliente_id: int):
     return models.ClienteModel(**db.query(database.Cliente).filter(database.Cliente.ClienteID == cliente_id).first().__dict__)
 
 def get_clientes(db: Session, skip: int = 0, limit: int = 10):
-    return models.ClienteModel(**db.query(database.Cliente).offset(skip).limit(limit).all().__dict__)
+    return db.query(database.Cliente).offset(skip).limit(limit).all()
 
+def search_cliente_by_name(db: Session, name: str):
+    return db.query(database.Cliente).filter(database.Cliente.Nombre.ilike(f"%{name}%")).all()

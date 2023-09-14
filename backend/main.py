@@ -64,4 +64,10 @@ def read_cliente(cliente_id: int, db: Session = Depends(get_db)):
 @app.get("/clientes/")
 def read_clientes(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     clientes = crud.get_clientes(db, skip=skip, limit=limit)
+    print(clientes)
+    return clientes
+
+@app.get("/clientes/search/")
+def search_cliente(name: str, db: Session = Depends(get_db)):
+    clientes = crud.search_cliente_by_name(db, name)
     return clientes
