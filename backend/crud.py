@@ -70,7 +70,7 @@ def create_reporte(db: Session, reporte: models.ReportesModel):
 #Todos los métodos para recuperar datos
 
 def get_cliente(db: Session, cliente_id: int):
-    return models.ClienteModel(**db.query(database.Cliente).filter(database.Cliente.ClienteID == cliente_id).first().__dict__)
+    return db.query(database.Cliente).filter(database.Cliente.ClienteID == cliente_id).first()
 
 def get_clientes(db: Session, skip: int = 0, limit: int = 10):
     return db.query(database.Cliente).offset(skip).limit(limit).all()
