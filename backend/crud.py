@@ -92,11 +92,11 @@ def get_all_personal(db: Session, skip: int = 0, limit: int = 10):
 #Tabla para Tareas
 # Recuperar un registro específico
 def get_tarea(db: Session, tarea_id: int):
-    return db.query(database.Tarea).filter(database.Tarea.TareaID == tarea_id).first()
+    return db.query(database.Tareas).filter(database.Tareas.TareaID == tarea_id).first()
 
 # Recuperar todos los registros ordenados por fecha
 def get_all_tareas(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(database.Tarea).offset(skip).limit(limit).all()
+    return db.query(database.Tareas).offset(skip).limit(limit).all()
 
 ##Agregar los métodos para tareas según el tipo "estado" completado o no
 
