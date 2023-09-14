@@ -11,7 +11,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 class Cliente(Base):
-    __tablename__ = 'clientes'
+    __tablename__ = 'Clientes'
 
     Cliente_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     Dni = Column(String(20), unique=True, index=True)
