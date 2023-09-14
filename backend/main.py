@@ -17,5 +17,5 @@ def read_root():
     return {"message": "Hello World"}
 
 @app.post("/clientes/")
-def create_cliente(cliente: database.Cliente, db: Session = Depends(get_db)):
+def create_cliente(cliente: models.Cliente, db: Session = Depends(get_db)):
     return crud.create_cliente(db, cliente)
