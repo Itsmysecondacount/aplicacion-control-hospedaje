@@ -13,7 +13,7 @@ class Reserva(BaseModel):
     atributo2: Optional[str] = None
 
 class Cliente(BaseModel):
-    Dni: Optional[str] = None
+    DNI: Optional[str] = None
     Nombre: Optional[str] = None
     Apellido: Optional[str] = None
     Email: Optional[str] = None
