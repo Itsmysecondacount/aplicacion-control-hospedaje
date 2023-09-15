@@ -1,35 +1,45 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const [data, setData] = useState<Cliente[]>([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await axios.get<Cliente[]>(
+					'http://backend:8010/clientes/?skip=0&limit=10',
+					{
+						headers: {
+							accept: 'application/json',
+						},
+					},
+				);
+				setData(response.data);
+			} catch (error) {
+				console.error('Hubo un error al obtener los datos:', error);
+			}
+		};
+
+		fetchData();
+	}, []);
+
+	return (
+		<div>
+			<h1>Clientes</h1>
+			{data.map((cliente, index) => (
+				<div key={index}>
+					<p>ID: {cliente.ClienteID}</p>
+					<p>Nombre: {cliente.Nombre}</p>
+					<p>Apellidos: {cliente.Apellido}</p>
+					{/* ... otros campos */}
+				</div>
+			))}
+		</div>
+	);
 }
 
-export default App
+export default App;
