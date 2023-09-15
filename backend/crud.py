@@ -141,3 +141,6 @@ def get_reserva(db: Session, reserva_id: int):
 
 def get_all_reservas_ordered_by_date(db: Session):
     return db.query(database.Reservas).order_by(database.Reservas.FechaInicio).all()
+
+#METODOS PARA UPDATE
+
