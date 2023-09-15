@@ -17,7 +17,7 @@ services:
     build:
       context: ./frontend # Asegúrate de reemplazar esto con el camino correcto a tu app React
       dockerfile: Dockerfile
-    restart: always
+    container_name: my_frontend_container
     volumes:
       - ./frontend:/app # Asegúrate de reemplazar esto con el camino correcto a tu app React
     ports:
