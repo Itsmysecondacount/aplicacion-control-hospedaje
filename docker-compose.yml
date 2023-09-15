@@ -21,7 +21,7 @@ services:
     volumes:
       - ./frontend:/app # Asegúrate de reemplazar esto con el camino correcto a tu app React
     ports:
-      - 5173:5173
+      - 3010:3010
 
   db:
     image: mysql:8.0
