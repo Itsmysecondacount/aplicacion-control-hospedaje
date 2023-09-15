@@ -10,6 +10,16 @@ services:
       - "8010:8010"  # Map port 8000 in the container to port 8000 on the host
     depends_on:
       - db  # This ensures the db service is started before the backend service
+  
+  frontend:
+    build: ./frontend
+    container_name: my_frontend_container
+    volumes:
+      - ./frontend:/app_front
+    ports:
+      - "3010:3010"
+    depends_on:
+      - backend
 
   db:
     image: mysql:8.0
