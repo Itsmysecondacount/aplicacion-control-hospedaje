@@ -11,7 +11,7 @@ function App() {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get<Cliente[]>(
-					'http://backend:8010/clientes/?skip=0&limit=10',
+					'http://192.168.0.40:8010/clientes/?skip=0&limit=10',
 					{
 						headers: {
 							accept: 'application/json',
