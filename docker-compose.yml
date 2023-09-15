@@ -2,7 +2,9 @@ version: '3.1'
 
 services:
   backend:
-    build: ./backend  # Path to the folder containing the Dockerfile
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: my_backend_container
     volumes:
       - ./backend:/app
@@ -12,14 +14,14 @@ services:
       - db  # This ensures the db service is started before the backend service
   
   frontend:
-    build: ./frontend
-    container_name: my_frontend_container
+    build:
+      context: ./frontend # Asegúrate de reemplazar esto con el camino correcto a tu app React
+      dockerfile: Dockerfile
+    restart: always
     volumes:
-      - ./frontend:/app_front
+      - ./frontend:/app # Asegúrate de reemplazar esto con el camino correcto a tu app React
     ports:
-      - "3010:3010"
-    depends_on:
-      - backend
+      - 5173:5173
 
   db:
     image: mysql:8.0
